@@ -18,7 +18,7 @@ class HomeController extends Controller
         $socialNetworks = $information ? json_decode($information->social_networks) : [];
         $promotions = Promotion::where('active', ENABLE)->orderBy('position', 'ASC')->get();
 
-        return view('app', compact(
+        return view('home', compact(
             'banner',
             'categories',
             'information',

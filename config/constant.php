@@ -27,4 +27,7 @@ if (!defined('DEFINE_CONSTANT')) {
     define('LEFT', 0);
     define('CENTER', 1);
     define('RIGHT', 2);
+
+    define('WAITING', 1);
+    define('REGISTERED', 2);
 }

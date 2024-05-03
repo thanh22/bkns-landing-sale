@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BannerController;
@@ -21,11 +22,14 @@ use App\Http\Controllers\Admin\PromotionController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin']);
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/cart/add/{id}', [CartController::class, 'addCart'])->name('add-cart');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart-checkout');
 
 Route::prefix('admin')->middleware('admin')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('admin-index');
@@ -57,6 +61,5 @@ Route::prefix('admin')->middleware('admin')->group(function() {
     
     Route::get('/information', [InformationController::class, 'index'])->name('information-list');
     Route::post('/information', [InformationController::class, 'store'])->name('information-store');
-
 });
 
